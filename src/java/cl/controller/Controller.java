@@ -101,15 +101,10 @@ public class Controller extends HttpServlet {
 
         request.getSession().getAttribute("rut");
 
-        /**if (cli != null) {
-            if (clavenueva.equals(clavenueva2)) {
-                 servicio.editarUsuario(rut, Hash.md5(clavenueva));
-            }
-           
-            
-            
+        if (clave.equals("") && clavenueva.equals("") && clavenueva2.equals("")) {
+            request.setAttribute("msg", "debe ingresar datos en todos los campos");
+            request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
         }
-        **/
 
     }
 

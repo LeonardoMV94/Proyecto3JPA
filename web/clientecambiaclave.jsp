@@ -62,6 +62,8 @@
                             Actualizar
                         </button>
                     </form>
+                    
+                    <br>
                     ${msg}
                 </div>
             </div>
