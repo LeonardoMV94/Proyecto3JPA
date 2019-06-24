@@ -12,9 +12,9 @@ import javax.ejb.ApplicationException;
  * @author Leonardo
  */
 @ApplicationException(rollback = true)
-public class Transacciones extends Exception {
+public class TransactionException extends Exception {
 
-    public Transacciones() {
+    public TransactionException() {
         super();
     }
     

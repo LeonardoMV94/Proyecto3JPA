@@ -106,8 +106,8 @@ public class Servicio implements ServicioLocal {
     }
 
     @Override
-    public void compra(String rut, ArrayList<String> lista) throws Transacciones {
-        ArrayList<Detalle> dtList = new ArrayList<Detalle>();
+    public void compra(String rut, ArrayList<String> lista) throws TransactionException {
+        ArrayList<Detalle> dtList = new ArrayList<>();
         
         Usuario usr = this.buscarUsuario(rut);
         Venta nuevaVenta= new Venta();
@@ -118,14 +118,14 @@ public class Servicio implements ServicioLocal {
         
         int codigo, unidad, suma=0;
         for (String s : lista) {
-            String []x =s.split(rut);
+            String []x =s.split(",");
             codigo = Integer.parseInt(x[0]);
             unidad = Integer.parseInt(x[1]);
             
             Producto p = this.buscarProducto(codigo);
             
             if (p.getStock()< unidad) {
-                throw new Transacciones();
+                throw new TransactionException();
             }
             
             p.setStock(p.getStock()-unidad);
@@ -154,6 +154,8 @@ public class Servicio implements ServicioLocal {
         em.merge(usr);
         //sincronizar
         em.flush();
+        
+        
     }
 
     

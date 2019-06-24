@@ -4,7 +4,7 @@ import cl.model.ServicioLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import cl.entities.*;
-import cl.model.Transacciones;
+import cl.model.TransactionException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,7 +58,6 @@ public class Controller extends HttpServlet {
             //DETALLECARRO.JSP   
             //boton comprar
             case "compra":
-                //crear metodo compra
                 this.compra(request, response);
                 break;
             //boton eliminar del carro
@@ -353,9 +352,10 @@ public class Controller extends HttpServlet {
                 
                 request.setAttribute("msg", "Compra realizada con exito! ");
                 //limpiar el carrito
+                //carro.clear();
                 request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
-            } catch (Transacciones ex) {
-               request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stocl");
+            } catch (TransactionException ex) {
+               request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stock" + ex);
                //actualizar carro
                request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
             }
@@ -363,7 +363,7 @@ public class Controller extends HttpServlet {
              
         }else{
         
-            request.setAttribute("msg", "no se encuentra usuario en el sistema");
+            request.setAttribute("msg", "no se encuentra usuario con rut ["+ rut+"] en el sistema");
             request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
         }
         

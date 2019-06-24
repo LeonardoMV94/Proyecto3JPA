@@ -43,7 +43,7 @@
             <div class="col s6 offset-s3">
                 <div class="card-panel">
                     <h4>Cambiar Clave</h4>
-                    ${cliente.rut}
+                   
                     <br>
                     <form action="control.do" method="POST">
                        <div class="input-field">

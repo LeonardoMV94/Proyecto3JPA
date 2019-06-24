@@ -57,8 +57,10 @@
                                 
                                
                             </table>
+                            <br>
                              ${msg}
                         </form>
+                         
                     </div>
                 </div>
             </div>
