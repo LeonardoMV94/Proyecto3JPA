@@ -55,8 +55,9 @@
                                     </tr>
                                 </c:forEach>
                                 
-                                
+                               
                             </table>
+                             ${msg}
                         </form>
                     </div>
                 </div>

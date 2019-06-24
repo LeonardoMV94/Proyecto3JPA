@@ -37,5 +37,5 @@ public interface ServicioLocal {
     //inicar sesion
     Usuario iniciarSesion(String rut, String clave);
     
-    
+    void compra(String rut, ArrayList<String> lista) throws Transacciones;
 }

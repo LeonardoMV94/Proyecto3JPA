@@ -4,7 +4,10 @@ import cl.model.ServicioLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import cl.entities.*;
+import cl.model.Transacciones;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.mail.Session;
 
@@ -55,7 +58,8 @@ public class Controller extends HttpServlet {
             //DETALLECARRO.JSP   
             //boton comprar
             case "compra":
-                //crear metodo
+                //crear metodo compra
+                this.compra(request, response);
                 break;
             //boton eliminar del carro
             case "deletecar":
@@ -324,5 +328,49 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void compra(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+           
+        String rut = request.getParameter("rut");
+        
+        Usuario usr = servicio.buscarUsuario(rut);
+        
+        if (usr != null && usr.getTipo().equals("cliente")) {
+            
+             ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
+            
+             
+             ArrayList<String> datos = new ArrayList<>();
+             for (Producto producto : carro) {
+                String unidad = request.getParameter("unidades" + producto.getCodigoproducto());
+                
+                datos.add(producto.getCodigoproducto()+","+unidad);
+            }
+            
+            try {
+                servicio.compra(rut, datos);
+                
+                request.setAttribute("msg", "Compra realizada con exito! ");
+                //limpiar el carrito
+                request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
+            } catch (Transacciones ex) {
+               request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stocl");
+               //actualizar carro
+               request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
+            }
+             
+             
+        }else{
+        
+            request.setAttribute("msg", "no se encuentra usuario en el sistema");
+            request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
+        }
+        
+    
+    
+    
+    
+    }
 
 }
