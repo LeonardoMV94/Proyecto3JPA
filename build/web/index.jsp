@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body class="blue">
+    <body class="blue darken-3">
 
         <div class="row valign-wrapper">
             <div class="col s6 offset-s3">

@@ -1,6 +1,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav class="blue darken-4">
+<nav class="blue darken-3">
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">
             <c:if test ="${not empty admin}">
@@ -17,7 +17,7 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <c:if test ="${not empty admin}">
                 <li><a href="producto.jsp">Gestion de productos</a></li>
-                <li><a href="usuario.jsp">Gestion de usuarios</a></li>
+                <li><a href="usuario.jsp">Crear usuarios</a></li>
                 <li><a href="categoria.jsp">Gestion de categorías</a></li>
                 <li><a href="venta.jsp">Gestion de ventas</a></li>
                     <c:if test="${carro.size() > 0}">

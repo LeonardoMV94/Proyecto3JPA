@@ -24,8 +24,18 @@
             <c:import url="menu.jsp"/>
         </c:if>
         <c:if test="${empty cliente}">
-            Error no eres cliente, seras redireccionado en 5 segundos
-            <meta http-equiv="refresh" content="5;url=index.jsp">
+            <div class="row valign-wrapper">
+                <div class="col s6 offset-s3">
+                    <div class="card-panel center-align">
+
+                        <h1>Error</h1>
+                        <br> <img src="http://www.doingresearchinclusively.org/wp-content/uploads/2012/06/stop-300x300.png" alt="Descripción de la imagen">
+                        <br> <h5>No eres cliente, seras redireccionado en 5 segundos </h5>
+                        
+                        <meta http-equiv="refresh" content="5;url=index.jsp">
+                    </div>
+                </div>
+            </div>
         </c:if>
 
 
@@ -33,18 +43,19 @@
             <div class="col s6 offset-s3">
                 <div class="card-panel">
                     <h4>Cambiar Clave</h4>
+                    <br>
                     <form action="control.do" method="POST">
                        <div class="input-field">
-                            <input id="clave" type="password" name="clave-anterior">
-                            <label for="clave">Contraseña anterior</label>
+                            <input id="claveanterior" type="password" name="claveanterior">
+                            <label for="claveanterior">Contraseña anterior</label>
 
                         <div class="input-field">
-                            <input id="clave" type="password" name="clavenueva">
-                            <label for="clave">Nueva contraseña</label>
+                            <input id="clavenueva" type="password" name="clavenueva">
+                            <label for="clavenueva">Nueva contraseña</label>
                         </div>
                         <div class="input-field">
-                            <input id="clave" type="password" name="clavenueva2">
-                            <label for="clave">Reingrese nueva contraseña</label>
+                            <input id="clavenueva2" type="password" name="clavenueva2">
+                            <label for="clavenueva2">Reingrese nueva contraseña</label>
                         </div>
                         
                         <button class="btn" name="bt" value="cambiarclave" type="submit">

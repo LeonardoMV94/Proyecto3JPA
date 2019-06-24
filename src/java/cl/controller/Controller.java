@@ -48,8 +48,8 @@ public class Controller extends HttpServlet {
             case "addcar":
                 this.addcar(request, response);
                 break;
-                
-       //DETALLECARRO.JSP   
+
+            //DETALLECARRO.JSP   
             //boton comprar
             case "compra":
                 //crear metodo
@@ -59,16 +59,12 @@ public class Controller extends HttpServlet {
                 //crear metodo
                 this.eliminarProductoCarro(request, response);
                 break;
-        //CLIENTECAMBIACLAVE.JSP
-             //BOTON CAMBIO DE CLAVE
+            //CLIENTECAMBIACLAVE.JSP
+            //BOTON CAMBIO DE CLAVE
             case "cambiarclave":
                 //crear metodo para cambio de clave
                 this.cambiarClaveCliente(request, response);
                 break;
-                
-                    
-                
-                
 
         }
 
@@ -79,37 +75,44 @@ public class Controller extends HttpServlet {
 
         String codigo = request.getParameter("codigo");
         Producto p = servicio.buscarProducto(Integer.parseInt(codigo));
-        
+
         ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
-        
-        if(carro == null){
+
+        if (carro == null) {
             carro = new ArrayList<>();
         }
-        
-       if (!carro.contains(p)) {
-           carro.add(p);
-           request.getSession().setAttribute("carro", carro);
-       }
 
-       response.sendRedirect("venta.jsp");
-       
+        if (!carro.contains(p)) {
+            carro.add(p);
+            request.getSession().setAttribute("carro", carro);
+        }
+
+        response.sendRedirect("venta.jsp");
+
     }
 
     protected void cambiarClaveCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        String rut = request.getParameter("rut");
-        String clave = request.getParameter("clave-anterior");
+
+        
+        String clave = request.getParameter("claveanterior");
         String clavenueva = request.getParameter("clavenueva");
         String clavenueva2 = request.getParameter("clavenueva2");
-       
-        Usuario user = servicio.iniciarSesion(rut, Hash.md5(clave));
-        
-    
-    
+
+        request.getSession().getAttribute("rut");
+
+        /**if (cli != null) {
+            if (clavenueva.equals(clavenueva2)) {
+                 servicio.editarUsuario(rut, Hash.md5(clavenueva));
+            }
+           
+            
+            
+        }
+        **/
+
     }
-    
-    
+
     protected void iniciarSesion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -127,7 +130,7 @@ public class Controller extends HttpServlet {
                 request.getSession().setAttribute("vendedor", user);
                 response.sendRedirect("vendedor.jsp");
             } else {
-                 request.getSession().setAttribute("admin", user);
+                request.getSession().setAttribute("admin", user);
                 response.sendRedirect("admin.jsp");
             }
         } else {
@@ -178,12 +181,11 @@ public class Controller extends HttpServlet {
         response.sendRedirect("producto.jsp");
 
     }
-    
+
     protected void eliminarProductoCarro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         //eliminar producto del carro
-
     }
 
     protected void adduser(HttpServletRequest request, HttpServletResponse response)

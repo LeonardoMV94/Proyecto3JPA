@@ -55,7 +55,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n");
       out.write("    </head>\n");
       out.write("\n");
-      out.write("    <body class=\"blue\">\n");
+      out.write("    <body class=\"blue darken-3\">\n");
       out.write("\n");
       out.write("        <div class=\"row valign-wrapper\">\n");
       out.write("            <div class=\"col s6 offset-s3\">\n");
