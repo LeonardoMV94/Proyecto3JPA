@@ -72,6 +72,10 @@ public class Controller extends HttpServlet {
                 this.cambiarClaveCliente(request, response);
                 break;
 
+            case "updtprod":
+                this.editarProducto(request, response);
+                break;
+
         }
 
     }
@@ -82,14 +86,13 @@ public class Controller extends HttpServlet {
         Producto prod = servicio.buscarProducto(Integer.parseInt(codigo));
 
         ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
-        
+
         carro.remove(prod);
-        
-        request.getSession().setAttribute("carro", carro);    
+
+        request.getSession().setAttribute("carro", carro);
         response.sendRedirect("detallecarro.jsp");
     }
-    
-    
+
     protected void addcar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -228,8 +231,6 @@ public class Controller extends HttpServlet {
 
     }
 
-    
-
     protected void adduser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -328,67 +329,82 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void compra(HttpServletRequest request, HttpServletResponse response) 
+    private void compra(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           
+
         String rut = request.getParameter("rut");
-        
+
         Usuario usr = servicio.buscarUsuario(rut);
-        
+
         if (usr != null && usr.getTipo().equals("cliente")) {
-            
-             ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
-            
-             
-             ArrayList<String> datos = new ArrayList<>();
-             for (Producto producto : carro) {
+
+            ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
+
+            ArrayList<String> datos = new ArrayList<>();
+            for (Producto producto : carro) {
                 String unidad = request.getParameter("unidades" + producto.getCodigoproducto());
-                
-                datos.add(producto.getCodigoproducto()+","+unidad);
+
+                datos.add(producto.getCodigoproducto() + "," + unidad);
             }
-            
+
             try {
                 servicio.compra(rut, datos);
-                
+
                 request.setAttribute("msg", "Compra realizada con exito! ");
                 //limpiar el carrito
                 //carro.clear();
                 request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
             } catch (TransactionException ex) {
-               request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stock" + ex);
-               //actualizar carro
-               this.sincronizarSesionCarro(request, response);
-               request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
+                request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stock" + ex);
+                //actualizar carro
+                this.sincronizarSesionCarro(request, response);
+                request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
             }
-             
-             
-        }else{
-        
-            request.setAttribute("msg", "no se encuentra usuario con rut ["+ rut+"] en el sistema");
+
+        } else {
+
+            request.setAttribute("msg", "no se encuentra usuario con rut [" + rut + "] en el sistema");
             request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
         }
-        
+
     }
-    
-    protected void sincronizarSesionCarro(HttpServletRequest request, HttpServletResponse response) 
+
+    protected void sincronizarSesionCarro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-            ArrayList<Producto> carro = (ArrayList<Producto>) request.getSession().getAttribute("carro");
-            ArrayList<Producto> carro2 = new ArrayList();
-            
-            
-            //recorre la lista de productos de la sesion y la actualiza con la de la BD
-            for (Producto p : carro) {
-                Producto pp = servicio.buscarProducto(p.getCodigoproducto());
-                carro2.add(pp);
+
+        ArrayList<Producto> carro = (ArrayList<Producto>) request.getSession().getAttribute("carro");
+        ArrayList<Producto> carro2 = new ArrayList();
+
+        //recorre la lista de productos de la sesion y la actualiza con la de la BD
+        for (Producto p : carro) {
+            Producto pp = servicio.buscarProducto(p.getCodigoproducto());
+            carro2.add(pp);
         }
-            request.getSession().setAttribute("carro", carro2);
-    
-    
-    
+        request.getSession().setAttribute("carro", carro2);
+
     }
-    
-    
-    
+
+    protected void editarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int cod = Integer.parseInt(request.getParameter("cod"));
+        String nombre = request.getParameter("nombre");
+        int precio = Integer.parseInt(request.getParameter("precio"));
+        int stc = Integer.parseInt(request.getParameter("stock"));
+        if (servicio.buscarProducto(cod) != null) {
+            
+                servicio.editarProducto(cod, precio, stc, 1);
+                request.setAttribute("msg", "Se actualizó exitosamente!");
+                request.getRequestDispatcher("editarproducto.jsp").forward(request, response);
+            
+
+        } else {
+
+            request.setAttribute("msg", "no se encuentra el producto");
+            request.getRequestDispatcher("editarproducto.jsp").forward(request, response);
+
+        }
+
+    }
 
 }
