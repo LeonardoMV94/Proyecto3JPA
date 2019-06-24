@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import cl.entities.*;
 import java.util.*;
 import javax.ejb.EJB;
+import javax.mail.Session;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -99,31 +101,38 @@ public class Controller extends HttpServlet {
         String clavenueva = request.getParameter("clavenueva");
         String clavenueva2 = request.getParameter("clavenueva2");
 
-        HttpSession sesion = request.getSession(true);
-        
+        HttpSession misession = (HttpSession) request.getSession();
+        Usuario cli = (Usuario) misession.getAttribute("cliente");
+
+        Usuario usr = (Usuario) servicio.buscarUsuario(cli.getRut());
+
         //validador de campos vacios
         if (clave.equals("") || clavenueva.equals("") || clavenueva2.equals("")) {
             request.setAttribute("msg", "debe ingresar datos en todos los campos");
             request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
         } else {
-              if (clave.equals(clavenueva)) {
-                    request.setAttribute("msg", "la nueva contraseña debe ser distinta a la actual");
-                    request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
-            } else {
-               
-                if (clavenueva != clavenueva2) {
-                request.setAttribute("msg", "las nuevas contraseñas deben coincidir");
+            if (clave.equals(clavenueva)) {
+                request.setAttribute("msg", "la nueva contraseña debe ser distinta a la actual");
                 request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
-                    
-                    }else{
-                        
-                    if (clavenueva=="1") {
-                        
-                        //acutalizar contraseña
+            } else {
+
+                if (clavenueva == null ? clavenueva2 != null : !clavenueva.equals(clavenueva2)) {
+                    request.setAttribute("msg", "las nuevas contraseñas deben coincidir");
+                    request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
+
+                } else {
+                    if (usr.getRut() == null ? clave != null : !usr.getRut().equals(clave)) {
+                        servicio.editarUsuario(cli.getRut(), Hash.md5(clavenueva));
+
+                        request.setAttribute("msg", "Clave actualizada exitosamente" + "<i class=\"large material-icons\">check</i>");
+                        request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
+                    } else {
+                        request.setAttribute("msg", "la contraseña actual y la nueva no debe coincidir");
+                        request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
                     }
-                
+
                 }
-   
+
             }
 
         }
