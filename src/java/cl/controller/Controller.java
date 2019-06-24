@@ -101,10 +101,22 @@ public class Controller extends HttpServlet {
 
         request.getSession().getAttribute("rut");
 
-        if (clave.equals("") && clavenueva.equals("") && clavenueva2.equals("")) {
+        
+        
+        
+        //validador de campos vacios
+        if (clave.equals("") || clavenueva.equals("") || clavenueva2.equals("")) {
             request.setAttribute("msg", "debe ingresar datos en todos los campos");
             request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
         }
+         if (clavenueva != clavenueva2) {
+                request.setAttribute("msg", "confirmacion de nueva clave incorrecta");
+            request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
+          
+        }
+        
+          
+         
 
     }
 
