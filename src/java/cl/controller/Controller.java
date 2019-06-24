@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -94,29 +95,38 @@ public class Controller extends HttpServlet {
     protected void cambiarClaveCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
         String clave = request.getParameter("claveanterior");
         String clavenueva = request.getParameter("clavenueva");
         String clavenueva2 = request.getParameter("clavenueva2");
 
-        request.getSession().getAttribute("rut");
-
-        
-        
+        HttpSession sesion = request.getSession(true);
         
         //validador de campos vacios
         if (clave.equals("") || clavenueva.equals("") || clavenueva2.equals("")) {
             request.setAttribute("msg", "debe ingresar datos en todos los campos");
             request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
+        } else {
+              if (clave.equals(clavenueva)) {
+                    request.setAttribute("msg", "la nueva contraseña debe ser distinta a la actual");
+                    request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
+            } else {
+               
+                if (clavenueva != clavenueva2) {
+                request.setAttribute("msg", "las nuevas contraseñas deben coincidir");
+                request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
+                    
+                    }else{
+                        
+                    if (clavenueva=="1") {
+                        
+                        //acutalizar contraseña
+                    }
+                
+                }
+   
+            }
+
         }
-         if (clavenueva != clavenueva2) {
-                request.setAttribute("msg", "confirmacion de nueva clave incorrecta");
-            request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
-          
-        }
-        
-          
-         
 
     }
 
