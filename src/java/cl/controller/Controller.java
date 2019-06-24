@@ -111,22 +111,25 @@ public class Controller extends HttpServlet {
             request.setAttribute("msg", "debe ingresar datos en todos los campos");
             request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
         } else {
+            //validador de igualdad en clave actual con la nueva
             if (clave.equals(clavenueva)) {
                 request.setAttribute("msg", "la nueva contraseña debe ser distinta a la actual");
                 request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
             } else {
-
+                //validador de coincidencia de clave nueva con la de repeticion
                 if (clavenueva == null ? clavenueva2 != null : !clavenueva.equals(clavenueva2)) {
                     request.setAttribute("msg", "las nuevas contraseñas deben coincidir");
                     request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
 
                 } else {
+                    //validador de coincidencia de clave actual con la nueva
                     if (usr.getRut() == null ? clave != null : !usr.getRut().equals(clave)) {
                         servicio.editarUsuario(cli.getRut(), Hash.md5(clavenueva));
 
                         request.setAttribute("msg", "Clave actualizada exitosamente" + "<i class=\"large material-icons\">check</i>");
                         request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
                     } else {
+                        //mensaje de coincidencia encontrada 
                         request.setAttribute("msg", "la contraseña actual y la nueva no debe coincidir");
                         request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
                     }
