@@ -357,6 +357,7 @@ public class Controller extends HttpServlet {
             } catch (TransactionException ex) {
                request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stock" + ex);
                //actualizar carro
+               this.sincronizarSesionCarro(request, response);
                request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
             }
              
@@ -367,10 +368,27 @@ public class Controller extends HttpServlet {
             request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
         }
         
+    }
     
+    protected void sincronizarSesionCarro(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+    
+            ArrayList<Producto> carro = (ArrayList<Producto>) request.getSession().getAttribute("carro");
+            ArrayList<Producto> carro2 = new ArrayList();
+            
+            
+            //recorre la lista de productos de la sesion y la actualiza con la de la BD
+            for (Producto p : carro) {
+                Producto pp = servicio.buscarProducto(p.getCodigoproducto());
+                carro2.add(pp);
+        }
+            request.getSession().setAttribute("carro", carro2);
     
     
     
     }
+    
+    
+    
 
 }
