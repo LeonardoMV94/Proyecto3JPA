@@ -22,10 +22,20 @@
                 <div class="col s6 offset-s3">
                     <div class="card-panel center-align">
 
-                        <h1>Error</h1>
+                        <h1>Acceso Denegado</h1>
                         <br> <img src="http://www.doingresearchinclusively.org/wp-content/uploads/2012/06/stop-300x300.png" alt="Descripción de la imagen">
-                        <br> <h5>No eres administrador, seras redireccionado en 5 segundos </h5>
-                        
+                        <br> <h5>No eres administrador! <br> Seras redireccionado en <span id="countdowntimer">5</span> segundos </h5>
+
+                        <script type="text/javascript">
+                            var timeleft = 5;
+                            var downloadTimer = setInterval(function () {
+                                timeleft--;
+                                document.getElementById("countdowntimer").textContent = timeleft;
+                                if (timeleft <= 0)
+                                    clearInterval(downloadTimer);
+                            }, 1000);
+                        </script>
+
                         <meta http-equiv="refresh" content="5;url=index.jsp">
                     </div>
                 </div>

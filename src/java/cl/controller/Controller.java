@@ -73,6 +73,20 @@ public class Controller extends HttpServlet {
 
     }
 
+    protected void eliminarProductoCarro(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String codigo = request.getParameter("codigo");
+        Producto prod = servicio.buscarProducto(Integer.parseInt(codigo));
+
+        ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
+        
+        carro.remove(prod);
+        
+        request.getSession().setAttribute("carro", carro);    
+        response.sendRedirect("detallecarro.jsp");
+    }
+    
+    
     protected void addcar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -211,11 +225,7 @@ public class Controller extends HttpServlet {
 
     }
 
-    protected void eliminarProductoCarro(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        //eliminar producto del carro
-    }
+    
 
     protected void adduser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
