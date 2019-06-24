@@ -37,7 +37,7 @@
                     <form action="control.do" method="POST">
 
                         <div class="input-field">
-                            <input id="cod" type="text" name="cod" readonly="readonly"  value="<%=codigo%>">
+                            <input id="cod" type="number" name="cod" readonly="readonly"  value="<%=codigo%>">
                             <label for="cod">Codigo del producto</label>
                         </div>    
                         <div class="input-field">
@@ -45,12 +45,12 @@
                             <label for="nombre">Nombre</label>
                         </div>
                         <div class="input-field">
-                            <input id="precio" type="text" name="precio" value="<%=precio%>">
+                            <input id="precio" type="number" name="precio" value="<%=precio%>">
                             <label for="precio">Precio</label>
                         </div>
 
                         <div class="input-field">
-                            <input id="stock" type="text" name="stock" value="<%=stock%>">
+                            <input id="stock" type="number" name="stock" value="<%=stock%>">
                             <label for="stock">Stock</label>
                         </div>
 

@@ -83,8 +83,9 @@ public class Servicio implements ServicioLocal {
     }
 
     @Override
-    public void editarProducto(int codigo, int precio, int stock, int estado) {
+    public void editarProducto2(int codigo,String nombre, int precio, int stock, int estado) {
         Producto p = buscarProducto(codigo);
+        p.setNombre(nombre);
         p.setPrecio(precio);
         p.setStock(stock);
         p.setEstado(estado);
@@ -93,6 +94,20 @@ public class Servicio implements ServicioLocal {
         em.refresh(p);
         
     }
+    
+    @Override
+    public void editarProducto(int codigo,int precio, int stock, int estado) {
+        Producto p = buscarProducto(codigo);
+        
+        p.setPrecio(precio);
+        p.setStock(stock);
+        p.setEstado(estado);
+        em.merge(p);
+        em.flush();
+        em.refresh(p);
+        
+    }
+    
     @Override
     public List<Producto> getProductos() {
         return em.createQuery("select p from Producto p").getResultList();

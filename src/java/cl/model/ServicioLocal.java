@@ -32,6 +32,7 @@ public interface ServicioLocal {
     // moulo producto
     Producto buscarProducto(int codigo);
     void editarProducto(int codigo,int precio,int stock, int estado);
+    void editarProducto2(int codigo,String nombre,int precio,int stock, int estado);
     List<Producto> getProductos();
     
     //inicar sesion

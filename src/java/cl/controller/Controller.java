@@ -355,7 +355,7 @@ public class Controller extends HttpServlet {
                 //carro.clear();
                 request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
             } catch (TransactionException ex) {
-                request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stock" + ex);
+                request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stock");
                 //actualizar carro
                 this.sincronizarSesionCarro(request, response);
                 request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
@@ -387,13 +387,20 @@ public class Controller extends HttpServlet {
     protected void editarProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int cod = Integer.parseInt(request.getParameter("cod"));
+        String cd = request.getParameter("cod");
         String nombre = request.getParameter("nombre");
-        int precio = Integer.parseInt(request.getParameter("precio"));
-        int stc = Integer.parseInt(request.getParameter("stock"));
-        if (servicio.buscarProducto(cod) != null) {
+        String pr = request.getParameter("precio");
+        String stc = request.getParameter("stock");
+        
+        int codigo = Integer.parseInt(cd);
+        int precio = Integer.parseInt(pr);
+        int stock = Integer.parseInt(stc);
+        
+       
+        
+        if (servicio.buscarProducto(codigo) != null && nombre != null && precio > 0 && stock >= 1) {
             
-                servicio.editarProducto(cod, precio, stc, 1);
+                servicio.editarProducto2(codigo, nombre, precio, stock, 1);
                 request.setAttribute("msg", "Se actualizó exitosamente!");
                 request.getRequestDispatcher("editarproducto.jsp").forward(request, response);
             
