@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class cliente_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class clientecambiaclave_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -57,6 +57,7 @@ public final class cliente_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -81,13 +82,40 @@ public final class cliente_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("        <div class=\"row valign-wrapper\">\n");
+      out.write("            <div class=\"col s6 offset-s3\">\n");
+      out.write("                <div class=\"card-panel\">\n");
+      out.write("                    <h4>Cambiar Clave</h4>\n");
+      out.write("                    <form action=\"control.do\" method=\"POST\">\n");
+      out.write("                       <div class=\"input-field\">\n");
+      out.write("                            <input id=\"clave\" type=\"password\" name=\"clave-anterior\">\n");
+      out.write("                            <label for=\"clave\">Contraseña anterior</label>\n");
+      out.write("\n");
+      out.write("                        <div class=\"input-field\">\n");
+      out.write("                            <input id=\"clave\" type=\"password\" name=\"clavenueva\">\n");
+      out.write("                            <label for=\"clave\">Nueva contraseña</label>\n");
+      out.write("                        </div>\n");
+      out.write("                        <div class=\"input-field\">\n");
+      out.write("                            <input id=\"clave\" type=\"password\" name=\"clavenueva2\">\n");
+      out.write("                            <label for=\"clave\">Reingrese nueva contraseña</label>\n");
+      out.write("                        </div>\n");
+      out.write("                        \n");
+      out.write("                        <button class=\"btn\" name=\"bt\" value=\"cambiarclave\" type=\"submit\">\n");
+      out.write("                            Actualizar\n");
+      out.write("                        </button>\n");
+      out.write("                    </form>\n");
+      out.write("                    ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${msg}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("            <!--Import jQuery before materialize.js-->\n");
-      out.write("            <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>\n");
-      out.write("            <script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>\n");
+      out.write("        <!--Import jQuery before materialize.js-->\n");
+      out.write("        <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>\n");
+      out.write("        <script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
@@ -173,19 +201,9 @@ public final class cliente_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("           <div class=\"row valign-wrapper\">\n");
-        out.write("                <div class=\"col s6 offset-s3\">\n");
-        out.write("                    <div class=\"card-panel center-align\">\n");
-        out.write("\n");
-        out.write("                        <h1>Error</h1>\n");
-        out.write("                        <br> <img src=\"http://www.doingresearchinclusively.org/wp-content/uploads/2012/06/stop-300x300.png\" alt=\"Descripción de la imagen\">\n");
-        out.write("                        <br> <h5>No eres cliente, seras redireccionado en 5 segundos </h5>\n");
-        out.write("                        \n");
-        out.write("                        <meta http-equiv=\"refresh\" content=\"5;url=index.jsp\">\n");
-        out.write("                    </div>\n");
-        out.write("                </div>\n");
-        out.write("            </div>\n");
-        out.write("            ");
+        out.write("            Error no eres cliente, seras redireccionado en 5 segundos\n");
+        out.write("            <meta http-equiv=\"refresh\" content=\"5;url=index.jsp\">\n");
+        out.write("        ");
         int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;

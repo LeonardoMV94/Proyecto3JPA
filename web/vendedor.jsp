@@ -23,8 +23,18 @@
             <c:import url="menu.jsp"/>
         </c:if>
         <c:if test="${empty vendedor}">
-            Error no eres vendedor, seras redireccionado en 5 segundos
-            <meta http-equiv="refresh" content="5;url=index.jsp">
+            <div class="row valign-wrapper">
+                <div class="col s6 offset-s3">
+                    <div class="card-panel center-align">
+
+                        <h1>Error</h1>
+                        <br> <img src="http://www.doingresearchinclusively.org/wp-content/uploads/2012/06/stop-300x300.png" alt="Descripción de la imagen">
+                        <br> <h5>No eres vendedor, seras redireccionado en 5 segundos </h5>
+                        
+                        <meta http-equiv="refresh" content="5;url=index.jsp">
+                    </div>
+                </div>
+            </div>
         </c:if>
         
         

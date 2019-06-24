@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sistemas
+ * @author Leonardo
  */
 @WebServlet(name = "Controller", urlPatterns = {"/control.do"})
 public class Controller extends HttpServlet {
@@ -98,12 +98,12 @@ public class Controller extends HttpServlet {
     protected void cambiarClaveCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     
-        
-        
-        //hola
-        
-        
-        
+        String rut = request.getParameter("rut");
+        String clave = request.getParameter("clave-anterior");
+        String clavenueva = request.getParameter("clavenueva");
+        String clavenueva2 = request.getParameter("clavenueva2");
+       
+        Usuario user = servicio.iniciarSesion(rut, Hash.md5(clave));
         
     
     

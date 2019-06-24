@@ -1,6 +1,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav>
+<nav class="blue darken-4">
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">
             <c:if test ="${not empty admin}">

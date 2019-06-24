@@ -39,11 +39,11 @@
                             <label for="clave">Contraseña anterior</label>
 
                         <div class="input-field">
-                            <input id="clave" type="password" name="clave1">
+                            <input id="clave" type="password" name="clavenueva">
                             <label for="clave">Nueva contraseña</label>
                         </div>
                         <div class="input-field">
-                            <input id="clave" type="password" name="clave2">
+                            <input id="clave" type="password" name="clavenueva2">
                             <label for="clave">Reingrese nueva contraseña</label>
                         </div>
                         

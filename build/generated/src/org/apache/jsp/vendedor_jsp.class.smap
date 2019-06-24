@@ -1,10 +1,10 @@
 SMAP
-cliente_jsp.java
+vendedor_jsp.java
 JSP
 *S JSP
 *F
-+ 0 cliente.jsp
-cliente.jsp
++ 0 vendedor.jsp
+vendedor.jsp
 *L
 5,18:57
 22:111,8

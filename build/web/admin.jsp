@@ -11,23 +11,33 @@
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-   
+
     <body>
-        
+
         <c:if test="${not empty admin}">
             <c:import url="menu.jsp"/>
         </c:if>
         <c:if test="${empty admin}">
-            Error no eres administrador, seras redireccionado en 5 segundos
-            <meta http-equiv="refresh" content="5;url=index.jsp">
+            <div class="row valign-wrapper">
+                <div class="col s6 offset-s3">
+                    <div class="card-panel center-align">
+
+                        <h1>Error</h1>
+                        <br> <img src="http://www.doingresearchinclusively.org/wp-content/uploads/2012/06/stop-300x300.png" alt="Descripción de la imagen">
+                        <br> <h5>No eres administrador, seras redireccionado en 5 segundos </h5>
+                        
+                        <meta http-equiv="refresh" content="5;url=index.jsp">
+                    </div>
+                </div>
+            </div>
         </c:if>
-        
-        
-        
-   
-        
-        
-    <!--Import jQuery before materialize.js-->
+
+
+
+
+
+
+        <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
     </body>
