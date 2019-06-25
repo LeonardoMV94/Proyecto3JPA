@@ -11,10 +11,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%! ServicioLocal servicio;%>
 <%
-   // InitialContext ctx = new InitialContext();
-   // servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
+    // InitialContext ctx = new InitialContext();
+    // servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
     //buscar ventas y almacenarlas en un ArrayList
-   // List<Venta> lista = servicio.getVentas();
+    // List<Venta> lista = servicio.getVentas();
 
 
 %>
@@ -35,11 +35,25 @@
 
         <c:if test="${not empty cliente}">
             <c:import url="menu.jsp"/>
-            
+
             <h5>Detalle de Compra</h5>
 
-               <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-               <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">shopping_basket</i>
+                        Fecha:
+                    </div>
+                    
+                    <div class="collapsible-body">
+                        <span>
+                          
+                     Lorem ipsum dolor sit amet.
+                        
+                     </span>
+                    </div>
+                </li>
+                
+            </ul>
 
 
         </c:if>
@@ -76,7 +90,9 @@
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
-        
-       
+
+        $(document).ready(function(){
+        $('.collapsible').collapsible();
+        });
     </body>
 </html>
