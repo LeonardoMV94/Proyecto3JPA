@@ -9,6 +9,7 @@
     InitialContext ctx = new InitialContext();
     servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
     List<Producto> listap = servicio.getProductos();
+    
 %>
 
 <c:set scope="page" var="listap" value="<%=listap%>"/>
@@ -39,6 +40,7 @@
                                     <p>${p.nombre}</p>
                                     <!-- aqui va imagen de producto-->
                                     <h5>$${p.precio}</h5>
+                                    En Stock: (${p.stock}) 
                                     <button class="btn-floating right" type="submit" name="bt" value="addcar">
                                         <i class="material-icons">add</i>
                                     </button>

@@ -28,9 +28,11 @@
                             <input id="clave" type="password" name="clave">
                             <label for="clave">Clave</label>
                         </div>
-                        <button class="btn" name="bt" value="iniciar" type="submit">
-                            Aceptar
-                        </button>
+                        <div class="card-action right-align">
+                            <button class="btn" name="bt" value="iniciar" type="submit">
+                                Ingresar
+                            </button>
+                        </div>
                     </form>
                     ${msg}
                 </div>

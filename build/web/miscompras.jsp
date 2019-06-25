@@ -13,12 +13,15 @@
 <%
     InitialContext ctx = new InitialContext();
     servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
-    
-    //llamar a productos
-    //llamar a venta
-    //llamar a detalle
-    //llamar al rut dentro de HttpSesion
+    /**
+        HttpSession misession = (HttpSession) request.getSession();
+        Usuario usr = (Usuario) misession.getAttribute("cliente");
+        String rut= usr.getRut();
 
+        List<Object[]> misCompras = servicio.getVentasClientes(rut);
+        String msg = misCompras.toString();
+   
+    **/
 %>
 
 <!DOCTYPE html>
@@ -37,28 +40,32 @@
 
         <c:if test="${not empty cliente}">
             <c:import url="menu.jsp"/>
-
+            
+            
+           
             <h5>Detalle de Compra</h5>
-
+           ${c}
+            
             <ul class="collapsible" data-collapsible="accordion">
                 
                 <li>
                     <div class="collapsible-header"><i class="material-icons left">shopping_basket</i>
                         Fecha: Total:
                     </div>
-                    
+                   
+                   
                     <div class="collapsible-body">
                         <span>
-                        Producto:
-                        Unidades:
-                        Precio:
+                            Producto:
+                       <br> Unidades:
+                       <br> Precio:
                         </span>
                     </div>
-                    
+                  
                 </li>
                 
             </ul>
-
+            
 
         </c:if>
         <c:if test="${empty cliente}">

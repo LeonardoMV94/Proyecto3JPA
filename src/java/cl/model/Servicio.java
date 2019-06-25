@@ -16,6 +16,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -177,8 +178,43 @@ public class Servicio implements ServicioLocal {
     public List<Venta> getVentas() {
         return em.createQuery("select v from Venta v").getResultList();
     }
+    
+    
+
+    @Override
+    public Venta buscarVenta(int codigoventa) {
+        return em.find(Venta.class, codigoventa);
+    }
 
     
     
+    
+    
+    
+    
+    @Override
+     public List<Object[]> getVentasClientes(String rut) {
+       //consulta nativa sql a BD a traves de Entity Manager
+        
+            return null;
+//try {
+           /**
+       Query q = em.createNativeQuery("select v.fecha, v.rutcliente,u.nombre , u.apellido, d.precio , d.stock , p.nombre"
+                + "from  venta v, detalle d , producto p, usuario "
+                + "where d.codigoventa=v.codigoventa "
+                + "and v.rutcliente=':rut' and p.codigoproducto=d.codigoproducto "
+                + "and u.rut=v.rutcliente").setParameter("rut", rut);
+        
+         List<Object[]> datos = q.getResultList();
+               return datos;
+        //} catch (Exception e) {
+          return null;
+     //   }
+  
+      **/
+    
+    }
+
+
     
 }

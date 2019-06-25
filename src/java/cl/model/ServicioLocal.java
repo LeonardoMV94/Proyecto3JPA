@@ -28,6 +28,7 @@ public interface ServicioLocal {
     Usuario buscarUsuario(String rut);
     void editarUsuario(String rut,String clave);
     List<Usuario> getUsuarios();
+   
     
     // modulo producto
     Producto buscarProducto(int codigo);
@@ -42,7 +43,16 @@ public interface ServicioLocal {
     
     //modulo venta
     List<Venta> getVentas();
+    Venta buscarVenta(int codigoventa);
+    
+    List<Object[]> getVentasClientes(String rut);
     
     //modulo detalle
+    
+    
+    
+    //findBy
+   
+    
     
 }

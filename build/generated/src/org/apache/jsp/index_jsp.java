@@ -71,9 +71,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <input id=\"clave\" type=\"password\" name=\"clave\">\n");
       out.write("                            <label for=\"clave\">Clave</label>\n");
       out.write("                        </div>\n");
-      out.write("                        <button class=\"btn\" name=\"bt\" value=\"iniciar\" type=\"submit\">\n");
-      out.write("                            Aceptar\n");
-      out.write("                        </button>\n");
+      out.write("                        <div class=\"card-action right-align\">\n");
+      out.write("                            <button class=\"btn\" name=\"bt\" value=\"iniciar\" type=\"submit\">\n");
+      out.write("                                Ingresar\n");
+      out.write("                            </button>\n");
+      out.write("                        </div>\n");
       out.write("                    </form>\n");
       out.write("                    ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${msg}", java.lang.String.class, (PageContext)_jspx_page_context, null));
