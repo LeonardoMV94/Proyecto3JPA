@@ -24,7 +24,7 @@
                
                 <c:if test="${carro.size() > 0}">
                     <li><a href="detallecarro.jsp"><i class="small material-icons left">shopping_cart</i>(${carro.size()})</a></li> 
-                    </c:if>
+                </c:if>
                 
                 
                 
@@ -32,7 +32,7 @@
                 <li><a href="salir.jsp"><i class="small material-icons">exit_to_app</i></a></li>
             </c:if>
             <c:if test ="${not empty vendedor}">
-                <li><a href="venta.jsp">Venta</a></li>
+                <li><a href="listarventa.jsp">Buscar Clientes</a></li>
                 <li><a href="salir.jsp"><i class="small material-icons">exit_to_app</i></a></li>
                 
             </c:if>
