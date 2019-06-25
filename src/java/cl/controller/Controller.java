@@ -131,7 +131,7 @@ public class Controller extends HttpServlet {
             request.setAttribute("msg", "debe ingresar datos en todos los campos");
             request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
         } else {
-            //validador de igualdad en clave actual con la nueva
+            //validador de igualdad en clave actual con la nueva segun input
             if (clave.equals(clavenueva)) {
                 request.setAttribute("msg", "la nueva contraseña debe ser distinta a la actual");
                 request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
@@ -142,7 +142,7 @@ public class Controller extends HttpServlet {
                     request.getRequestDispatcher("clientecambiaclave.jsp").forward(request, response);
 
                 } else {
-                    //validador de coincidencia de clave actual con la nueva
+                    //validador de coincidencia de clave actual con la nueva segun la bd
                     if (usr.getRut() == null ? clave != null : !usr.getRut().equals(clave)) {
                         servicio.editarUsuario(cli.getRut(), Hash.md5(clavenueva));
 
@@ -335,10 +335,11 @@ public class Controller extends HttpServlet {
         String rut = request.getParameter("rut");
 
         Usuario usr = servicio.buscarUsuario(rut);
-
+        ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
+        
+        if (carro.isEmpty()==false) {
+            
         if (usr != null && usr.getTipo().equals("cliente")) {
-
-            ArrayList<Producto> carro = (ArrayList) request.getSession().getAttribute("carro");
 
             ArrayList<String> datos = new ArrayList<>();
             for (Producto producto : carro) {
@@ -366,6 +367,12 @@ public class Controller extends HttpServlet {
             request.setAttribute("msg", "no se encuentra usuario con rut [" + rut + "] en el sistema");
             request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
         }
+        }else{
+            request.setAttribute("msg", "no hay productos en el carro!");
+            request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
+            
+        }
+        
 
     }
 
@@ -400,13 +407,13 @@ public class Controller extends HttpServlet {
         if (codBd >0 && nombre != null && precio > 0 && stock >= 1) {
             
                 servicio.editarProducto2(codigo, nombre, precio, stock, 1);
-               // request.setAttribute("msg", "Se actualizó exitosamente!");
+                request.setAttribute("msg", "Producto se actualizó exitosamente!");
                 request.getRequestDispatcher("producto.jsp").forward(request, response);
             
 
         } else {
 
-            request.setAttribute("msg", "no se encuentra el producto");
+            request.setAttribute("msg", "problema al actualizar producto");
             request.getRequestDispatcher("producto.jsp").forward(request, response);
 
         }
