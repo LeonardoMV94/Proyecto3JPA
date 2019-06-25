@@ -49,7 +49,7 @@ public interface ServicioLocal {
     List<Object[]> getVentasClientes(String rut);
     
     //modulo detalle
-    
+    List<Detalle> getDetalle();
     
     
     //findBy

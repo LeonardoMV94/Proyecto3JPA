@@ -215,6 +215,12 @@ public class Servicio implements ServicioLocal {
     
     }
 
+    @Override
+    public List<Detalle> getDetalle() {
+
+     return em.createQuery("select d from Detalle d").getResultList();
+    }
+
     
 
     

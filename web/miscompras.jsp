@@ -41,16 +41,14 @@
                 Usuario usr = (Usuario) misession.getAttribute("cliente");
 
                 List<Venta> lista = servicio.getVentas();
-              
+
                 for (int i = 0; i < lista.size(); i++) {
 
                     Venta v = lista.get(i);
                     Usuario u = v.getRutcliente();
-                    
-                    if (u.getRut()==usr.getRut()) {
-                            
-                        
-                    
+
+                    if (u.getRut() == usr.getRut()) {
+
 
             %>
 
@@ -62,18 +60,34 @@
                     </div>
 
 
-                    <div class="collapsible-body">
+                    
+                        <%
+                            List<Detalle> listaD = v.getDetalleList();
+                            for (int q = 0; q < listaD.size(); q++) {
+
+                                Detalle det = listaD.get(q);
+                                Venta ven= det.getCodigoventa();
+                                Producto p = det.getCodigoproducto();
+
+                                
+                        %>
+                        <div class="collapsible-body">
                         <span>
-                            Producto: 
-                            <br> Unidades:
-                            <br> Precio:
+                            Producto: <%=p.getNombre()%>
+                            <br> Unidades: <%=det.getStock()%>
+                            <br> Precio:<%=det.getPrecio()%>
                         </span>
-                    </div>
+                         </div>
+                        <%   
+                            }
+
+                        %>
+                   
 
                 </li>
 
             </ul>
-            <%    }                       
+            <%    }
                 }
 
             %>
