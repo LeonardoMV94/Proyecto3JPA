@@ -60,29 +60,29 @@
                     </div>
 
 
-                    
-                        <%
-                            List<Detalle> listaD = v.getDetalleList();
-                            for (int q = 0; q < listaD.size(); q++) {
+                    <%
+                        List<Detalle> listaD = v.getDetalleList();
+                        for (int q = 0; q < listaD.size(); q++) {
 
-                                Detalle det = listaD.get(q);
-                                Venta ven= det.getCodigoventa();
-                                Producto p = det.getCodigoproducto();
+                            Detalle det = listaD.get(q);
+                            Venta ven = det.getCodigoventa();
+                            Producto p = det.getCodigoproducto();
 
-                                
-                        %>
-                        <div class="collapsible-body">
+
+                    %>
+
+                    <div class="collapsible-body">
                         <span>
                             Producto: <%=p.getNombre()%>
                             <br> Unidades: <%=det.getStock()%>
                             <br> Precio:<%=det.getPrecio()%>
                         </span>
-                         </div>
-                        <%   
-                            }
+                    </div>
+                    <%
+                        }
 
-                        %>
-                   
+                    %>
+
 
                 </li>
 
