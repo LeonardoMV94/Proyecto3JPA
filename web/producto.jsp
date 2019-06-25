@@ -67,7 +67,7 @@
                             <label>Categoria</label>
                         </div>
                         <button class="btn" name="bt" value="addprod" type="submit">
-                            Guardar
+                            Añadir producto
                         </button>
 
                     </form>

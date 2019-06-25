@@ -175,7 +175,7 @@ public class Servicio implements ServicioLocal {
     //Modulo de Ventas
     @Override
     public List<Venta> getVentas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createQuery("select v from Venta v").getResultList();
     }
 
     

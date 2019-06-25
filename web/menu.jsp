@@ -39,6 +39,7 @@
             <c:if test ="${not empty cliente}">
                 
                 <li><a href="clientecambiaclave.jsp">Cambiar Clave</a></li>
+                <li><a href="miscompras.jsp">Mis Compras</a></li>
                 <li><a href="salir.jsp"><i class="small material-icons">exit_to_app</i></a></li>
                 
             </c:if>

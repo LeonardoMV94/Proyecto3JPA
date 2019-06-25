@@ -14,7 +14,11 @@
     InitialContext ctx = new InitialContext();
     servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
     //buscar ventas y almacenarlas en un ArrayList
-    List<Producto> listap = servicio.getProductos();
+    List<Venta> lista = servicio.getVentas();
+    
+    
+
+
 %>
 
 <!DOCTYPE html>
@@ -34,10 +38,10 @@
         <c:if test="${not empty cliente}">
             <c:import url="menu.jsp"/>
             <h5>Detalle de Compra</h5>
-            <c:forEach items="${carro}" var="p">
+            <c:forEach items="${listav}" var="v">
                 <div class="container">
                     <div class="row valign-wrapper">
-                        <div class="col s6 offset-s3 valign">
+                        <div class="col s6 offset-s3 ">
                             <div class="card-panel">
 
 

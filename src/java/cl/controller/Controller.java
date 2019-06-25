@@ -46,7 +46,7 @@ public class Controller extends HttpServlet {
                 this.addprod(request, response);
                 break;
             case "editprodes":
-                this.editprodes(request, response);
+                this.editarEstadoProducto(request, response);
                 break;
             case "iniciar":
                 this.iniciarSesion(request, response);
@@ -214,7 +214,7 @@ public class Controller extends HttpServlet {
 
     }
 
-    protected void editprodes(HttpServletRequest request, HttpServletResponse response)
+    protected void editarEstadoProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String cod = request.getParameter("codigo");

@@ -43,4 +43,6 @@ public interface ServicioLocal {
     //modulo venta
     List<Venta> getVentas();
     
+    //modulo detalle
+    
 }
