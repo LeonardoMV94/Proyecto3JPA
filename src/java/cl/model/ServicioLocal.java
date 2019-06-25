@@ -29,7 +29,7 @@ public interface ServicioLocal {
     void editarUsuario(String rut,String clave);
     List<Usuario> getUsuarios();
     
-    // moulo producto
+    // modulo producto
     Producto buscarProducto(int codigo);
     void editarProducto(int codigo,int precio,int stock, int estado);
     void editarProducto2(int codigo,String nombre,int precio,int stock, int estado);
@@ -39,4 +39,8 @@ public interface ServicioLocal {
     Usuario iniciarSesion(String rut, String clave);
     
     void compra(String rut, ArrayList<String> lista) throws TransactionException;
+    
+    //modulo venta
+    List<Venta> getVentas();
+    
 }

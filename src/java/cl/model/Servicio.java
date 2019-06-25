@@ -172,6 +172,11 @@ public class Servicio implements ServicioLocal {
         
         
     }
+    //Modulo de Ventas
+    @Override
+    public List<Venta> getVentas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     
     

@@ -226,7 +226,8 @@ public class Controller extends HttpServlet {
         int precio = Integer.parseInt(pre);
 
         servicio.editarProducto(codigo, precio, 0, estado);
-
+        
+        request.setAttribute("msg", "Se modificó el estado del producto exitosamente!");
         response.sendRedirect("producto.jsp");
 
     }

@@ -3,9 +3,20 @@
     Created on : 25-06-2019, 0:38:38
     Author     : Leonardo
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="cl.entities.*"%>
+<%@page import="java.util.List"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="cl.model.ServicioLocal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%! ServicioLocal servicio;%>
+<%
+    InitialContext ctx = new InitialContext();
+    servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
+    //buscar ventas y almacenarlas en un ArrayList
+    List<Producto> listap = servicio.getProductos();
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
