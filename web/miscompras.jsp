@@ -11,12 +11,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%! ServicioLocal servicio;%>
 <%
-    InitialContext ctx = new InitialContext();
-    servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
+   // InitialContext ctx = new InitialContext();
+   // servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
     //buscar ventas y almacenarlas en un ArrayList
-    List<Venta> lista = servicio.getVentas();
-    
-    
+   // List<Venta> lista = servicio.getVentas();
 
 
 %>
@@ -37,24 +35,12 @@
 
         <c:if test="${not empty cliente}">
             <c:import url="menu.jsp"/>
+            
             <h5>Detalle de Compra</h5>
-            <c:forEach items="${listav}" var="v">
-                <div class="container">
-                    <div class="row valign-wrapper">
-                        <div class="col s6 offset-s3 ">
-                            <div class="card-panel">
 
+               <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+               <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
 
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </c:forEach>
 
         </c:if>
         <c:if test="${empty cliente}">
@@ -90,5 +76,7 @@
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        
+       
     </body>
 </html>
