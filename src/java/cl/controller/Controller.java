@@ -352,7 +352,7 @@ public class Controller extends HttpServlet {
 
                 request.setAttribute("msg", "Compra realizada con exito! ");
                 //limpiar el carrito
-                //carro.clear();
+                carro.clear();
                 request.getRequestDispatcher("detallecarro.jsp").forward(request, response);
             } catch (TransactionException ex) {
                 request.setAttribute("msg", "Error de Stock al realizar la compra, Verifique stock");
@@ -387,28 +387,27 @@ public class Controller extends HttpServlet {
     protected void editarProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cd = request.getParameter("cod");
+        
         String nombre = request.getParameter("nombre");
-        String pr = request.getParameter("precio");
-        String stc = request.getParameter("stock");
+        int codigo = Integer.parseInt(request.getParameter("cod"));
+        int precio = Integer.parseInt(request.getParameter("precio"));
+        int stock = Integer.parseInt(request.getParameter("stock"));
         
-        int codigo = Integer.parseInt(cd);
-        int precio = Integer.parseInt(pr);
-        int stock = Integer.parseInt(stc);
+        Producto p = servicio.buscarProducto(codigo);
         
-       
+        int codBd = p.getCodigoproducto();
         
-        if (servicio.buscarProducto(codigo) != null && nombre != null && precio > 0 && stock >= 1) {
+        if (codBd >0 && nombre != null && precio > 0 && stock >= 1) {
             
                 servicio.editarProducto2(codigo, nombre, precio, stock, 1);
-                request.setAttribute("msg", "Se actualizó exitosamente!");
-                request.getRequestDispatcher("editarproducto.jsp").forward(request, response);
+               // request.setAttribute("msg", "Se actualizó exitosamente!");
+                request.getRequestDispatcher("producto.jsp").forward(request, response);
             
 
         } else {
 
             request.setAttribute("msg", "no se encuentra el producto");
-            request.getRequestDispatcher("editarproducto.jsp").forward(request, response);
+            request.getRequestDispatcher("producto.jsp").forward(request, response);
 
         }
 
