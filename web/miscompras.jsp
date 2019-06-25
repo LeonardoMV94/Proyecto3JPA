@@ -39,18 +39,20 @@
             <h5>Detalle de Compra</h5>
 
             <ul class="collapsible" data-collapsible="accordion">
+                
                 <li>
-                    <div class="collapsible-header"><i class="material-icons">shopping_basket</i>
-                        Fecha:
+                    <div class="collapsible-header"><i class="material-icons left">shopping_basket</i>
+                        Fecha: Total:
                     </div>
                     
                     <div class="collapsible-body">
                         <span>
-                          
-                     Lorem ipsum dolor sit amet.
-                        
-                     </span>
+                        Producto:
+                        Unidades:
+                        Precio:
+                        </span>
                     </div>
+                    
                 </li>
                 
             </ul>
@@ -90,9 +92,11 @@
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
-
+        <script>
         $(document).ready(function(){
         $('.collapsible').collapsible();
         });
+        </script>
+        
     </body>
 </html>
