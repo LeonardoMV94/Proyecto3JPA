@@ -11,11 +11,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%! ServicioLocal servicio;%>
 <%
-    // InitialContext ctx = new InitialContext();
-    // servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
-    //buscar ventas y almacenarlas en un ArrayList
-    // List<Venta> lista = servicio.getVentas();
-
+    InitialContext ctx = new InitialContext();
+    servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
+    
+    //llamar a productos
+    //llamar a venta
+    //llamar a detalle
+    //llamar al rut dentro de HttpSesion
 
 %>
 
