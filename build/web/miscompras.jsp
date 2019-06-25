@@ -13,14 +13,8 @@
 <%
     InitialContext ctx = new InitialContext();
     servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
-    
-        HttpSession misession = (HttpSession) request.getSession();
-        Usuario usr = (Usuario) misession.getAttribute("cliente");
-        
-        List<Venta> auxV = servicio.getVentas();
-        
-        
-      
+
+
 %>
 
 <!DOCTYPE html>
@@ -39,32 +33,50 @@
 
         <c:if test="${not empty cliente}">
             <c:import url="menu.jsp"/>
-            
-            
-           
+
+
+
             <h5>Detalle de Compra</h5>
-           ${c}
-            
+            <%                HttpSession misession = (HttpSession) request.getSession();
+                Usuario usr = (Usuario) misession.getAttribute("cliente");
+
+                List<Venta> lista = servicio.getVentas();
+              
+                for (int i = 0; i < lista.size(); i++) {
+
+                    Venta v = lista.get(i);
+                    Usuario u = v.getRutcliente();
+                    
+                    if (u.getRut()==usr.getRut()) {
+                            
+                        
+                    
+
+            %>
+
             <ul class="collapsible" data-collapsible="accordion">
-                
+
                 <li>
                     <div class="collapsible-header"><i class="material-icons left">shopping_basket</i>
-                        Fecha: Total:
+                        Fecha: <%=v.getFecha()%> Total: <%=v.getTotal()%>
                     </div>
-                   
-                   
+
+
                     <div class="collapsible-body">
                         <span>
-                            Producto:
-                       <br> Unidades:
-                       <br> Precio:
+                            Producto: 
+                            <br> Unidades:
+                            <br> Precio:
                         </span>
                     </div>
-                  
+
                 </li>
-                
+
             </ul>
-            
+            <%    }                       
+                }
+
+            %>
 
         </c:if>
         <c:if test="${empty cliente}">
@@ -101,10 +113,10 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script>
-        $(document).ready(function(){
-        $('.collapsible').collapsible();
-        });
+                            $(document).ready(function () {
+                                $('.collapsible').collapsible();
+                            });
         </script>
-        
+
     </body>
 </html>
