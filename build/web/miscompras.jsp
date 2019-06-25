@@ -13,15 +13,14 @@
 <%
     InitialContext ctx = new InitialContext();
     servicio = (ServicioLocal) ctx.lookup("java:global/EjemploJPA2019/Servicio!cl.model.ServicioLocal");
-    /**
+    
         HttpSession misession = (HttpSession) request.getSession();
         Usuario usr = (Usuario) misession.getAttribute("cliente");
-        String rut= usr.getRut();
-
-        List<Object[]> misCompras = servicio.getVentasClientes(rut);
-        String msg = misCompras.toString();
-   
-    **/
+        
+        List<Venta> auxV = servicio.getVentas();
+        
+        
+      
 %>
 
 <!DOCTYPE html>

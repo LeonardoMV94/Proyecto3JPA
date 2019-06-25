@@ -44,6 +44,7 @@ public interface ServicioLocal {
     //modulo venta
     List<Venta> getVentas();
     Venta buscarVenta(int codigoventa);
+
     
     List<Object[]> getVentasClientes(String rut);
     
